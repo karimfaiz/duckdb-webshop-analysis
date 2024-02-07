@@ -1,5 +1,6 @@
 import duckdb
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # Create a DuckDB connection
 con = duckdb.connect(database=':memory:')  # In-memory database
@@ -19,3 +20,16 @@ result_df = pd.DataFrame(result.fetchall(), columns=["Category", "Total Orders",
 
 # Display the result
 print(result_df)
+
+
+
+
+# Plot the data
+plt.figure(figsize=(10, 6))
+plt.bar(result_df["Category"], result_df["Total Orders"])
+plt.xlabel("Category")
+plt.ylabel("Total Orders")
+plt.title("Total Orders by Category")
+plt.xticks(rotation=45)
+plt.show()
+
